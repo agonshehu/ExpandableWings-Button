@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.expandablewings.ExpandableWings
+            android:id="@+id/expandableWings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ew_right_backgroundcolor="@color/transparent"
+            app:ew_left_backgroundcolor="@color/transparent"
+            app:ew_right_textcolor="@color/colorPrimary"
+            app:ew_left_textcolor="@color/colorPrimary"
+            app:ew_right_width="150dp"
+            app:ew_left_width="150dp"
+            app:ew_left_height="50dp"
+            app:ew_right_height="50dp"
+            app:ew_left_textsize="15sp"
+            app:ew_right_textsize="15sp"
+            app:ew_visibility_state="true"
+            app:ew_left_text="Left"
+            app:ew_right_text="Right"/>
+    </LinearLayout>
+
+</RelativeLayout>

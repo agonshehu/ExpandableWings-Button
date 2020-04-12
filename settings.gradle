@@ -1,0 +1,3 @@
+rootProject.name='ExpandableWings'
+include ':app', ':ExpandableWingsLibrary'
+include ':expandablewings'

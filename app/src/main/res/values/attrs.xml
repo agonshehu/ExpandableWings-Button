@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ExpandableWingsTest">
+        <attr name="ew_right_backgroundcolor" format="color" />
+        <attr name="ew_left_backgroundcolor" format="color" />
+        <attr name="ew_right_width" format="dimension" />
+        <attr name="ew_left_width" format="dimension" />
+        <attr name="ew_right_height" format="dimension" />
+        <attr name="ew_left_height" format="dimension" />
+        <attr name="ew_right_textcolor" format="color" />
+        <attr name="ew_left_textcolor" format="color" />
+        <attr name="ew_right_textsize" format="dimension" />
+        <attr name="ew_left_textsize" format="dimension" />
+        <attr name="ew_fabsize" format="dimension"/>
+        <attr name="ew_visibility_state" format="boolean"/>
+        <attr name="ew_right_text" format="string"/>
+        <attr name="ew_left_text" format="string"/>
+    </declare-styleable>
+</resources>
