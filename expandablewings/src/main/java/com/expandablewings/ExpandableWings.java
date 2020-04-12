@@ -192,7 +192,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         );
     }
 
-    void setOnWingClickListener(OnWingClick listener) {
+    public void setOnWingClickListener(OnWingClick listener) {
         mListener = listener;
     }
 
