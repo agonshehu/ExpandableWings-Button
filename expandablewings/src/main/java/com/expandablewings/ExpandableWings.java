@@ -26,6 +26,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
     private FloatingActionButton floatingActionButton;
     private Context context;
     private OnWingClick mListener;
+    private OnFabClick mFabListener;
     private boolean iconRotate = false;
     private int rotationDegree = 0;
     private RelativeLayout rightWing, leftWing;
@@ -52,6 +53,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
     private void init(AttributeSet attrs){
         try {
             mListener = (OnWingClick) context;
+            mFabListener = (OnFabClick) context;
         } catch (Exception ignored) {
 
         }
@@ -142,6 +144,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         } else if (id == R.id.leftclick) {
             if (mListener != null) mListener.onClick(Wings.LEFT);
         } else if (id == R.id.addbtn) {
+            if (mFabListener != null) mFabListener.onClick(view);
             if (!disableExpansion) {
                 toggleFab();
             }
@@ -184,6 +187,10 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         void onClick(Wings wings);
     }
 
+    public interface OnFabClick{
+        void onClick(View view);
+    }
+
 
     private void changeIconColor(@NonNull LinearLayout drawable, int color){
         drawable.getBackground().setColorFilter(
@@ -194,6 +201,10 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
 
     public void setOnWingClickListener(OnWingClick listener) {
         mListener = listener;
+    }
+
+    public void setOnFabClickListener(OnFabClick listener) {
+        mFabListener = listener;
     }
 
     public void setWingColors(int leftWingColor, int rightWingColor){

@@ -2,6 +2,7 @@ package com.expandablewings;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -15,6 +16,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ExpandableWings expandableWings = findViewById(R.id.expandableWings);
+        expandableWings.setOnFabClickListener(new ExpandableWings.OnFabClick() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
+            }
+        });
         expandableWings.setOnWingClickListener(new ExpandableWings.OnWingClick() {
             @Override
             public void onClick(ExpandableWings.Wings wings) {
