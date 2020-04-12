@@ -9,7 +9,6 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,19 +20,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ExpandableWings extends RelativeLayout implements View.OnClickListener {
 
-    private LinearLayout rightWingClick, leftWingClick;
     private TextView rightWingText, leftWingText;
     private FloatingActionButton floatingActionButton;
     private Context context;
     private OnWingClick mListener;
-    private OnFabClick mFabListener;
     private boolean iconRotate = false;
     private int rotationDegree = 0;
     private RelativeLayout rightWing, leftWing;
-    private boolean disableExpansion = false;
 
     public enum Wings {
-        LEFT, RIGHT
+        LEFT, RIGHT, CENTER
     }
 
     public ExpandableWings(Context context) {
@@ -53,7 +49,6 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
     private void init(AttributeSet attrs){
         try {
             mListener = (OnWingClick) context;
-            mFabListener = (OnFabClick) context;
         } catch (Exception ignored) {
 
         }
@@ -62,8 +57,6 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         RelativeLayout rootView = findViewById(R.id.mRootView);
         rightWing = rootView.findViewById(R.id.expandable_right);
         leftWing = rootView.findViewById(R.id.expandable_left);
-        rightWingClick = rootView.findViewById(R.id.rightclick);
-        leftWingClick = rootView.findViewById(R.id.leftclick);
         rightWingText = rootView.findViewById(R.id.rightwingtext);
         leftWingText = rootView.findViewById(R.id.leftwingtext);
         floatingActionButton = rootView.findViewById(R.id.addbtn);
@@ -119,11 +112,11 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         leftWingText.setTextColor(mInitLeftWingTextColor);
         rightWingText.setTextColor(mInitRightWingTextColor);
 
-        setDimensions(leftWingClick, mInitLeftWingHeight, mInitLeftWingWidth);
-        setDimensions(rightWingClick, mInitRightWingHeight, mInitRightWingWidth);
+        setDimensions(leftWing, mInitLeftWingHeight, mInitLeftWingWidth);
+        setDimensions(rightWing, mInitRightWingHeight, mInitRightWingWidth);
 
-        changeIconColor(leftWingClick, mInitLeftWingColor);
-        changeIconColor(rightWingClick, mInitRightWingColor);
+        changeIconColor(leftWing, mInitLeftWingColor);
+        changeIconColor(rightWing, mInitRightWingColor);
 
         if (mInitState){
             leftWing.setVisibility(VISIBLE);
@@ -131,23 +124,20 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         }
 
         floatingActionButton.setOnClickListener(this);
-        rightWingClick.setOnClickListener(this);
-        leftWingClick.setOnClickListener(this);
+        rightWing.setOnClickListener(this);
+        leftWing.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.rightclick) {
+        if (id == R.id.expandable_right) {
             if (mListener != null) mListener.onClick(Wings.RIGHT);
-        } else if (id == R.id.leftclick) {
+        } else if (id == R.id.expandable_left) {
             if (mListener != null) mListener.onClick(Wings.LEFT);
         } else if (id == R.id.addbtn) {
-            if (mFabListener != null) mFabListener.onClick(view);
-            if (!disableExpansion) {
-                toggleFab();
-            }
+            if (mListener != null) mListener.onClick(Wings.CENTER);
         }
     }
 
@@ -176,9 +166,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         }
     }
 
-    public void disableExpansion(boolean check){
-        this.disableExpansion = check;
-    }
+
     public boolean isExpanded(){
         return rightWing.getVisibility() == VISIBLE && leftWing.getVisibility() == VISIBLE;
     }
@@ -187,12 +175,8 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         void onClick(Wings wings);
     }
 
-    public interface OnFabClick{
-        void onClick(View view);
-    }
 
-
-    private void changeIconColor(@NonNull LinearLayout drawable, int color){
+    private void changeIconColor(@NonNull RelativeLayout drawable, int color){
         drawable.getBackground().setColorFilter(
                 color,
                 PorterDuff.Mode.SRC_ATOP
@@ -203,14 +187,9 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         mListener = listener;
     }
 
-    public void setOnFabClickListener(OnFabClick listener) {
-        mFabListener = listener;
-    }
-
     public void setWingColors(int leftWingColor, int rightWingColor){
-        changeIconColor(leftWingClick, leftWingColor);
-        changeIconColor(rightWingClick, rightWingColor);
-
+        changeIconColor(leftWing, leftWingColor);
+        changeIconColor(rightWing, rightWingColor);
     }
 
     public void setTextColor(int leftColor, int rightColor){
@@ -232,8 +211,8 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
     }
 
     public void setWingDimensions(int leftWingHeight, int leftWingWidth, int rightWingHeight, int rightWingWidth){
-        setDimensions(leftWingClick, leftWingHeight, leftWingWidth);
-        setDimensions(rightWingClick, rightWingHeight, rightWingWidth);
+        setDimensions(leftWing, leftWingHeight, leftWingWidth);
+        setDimensions(rightWing, rightWingHeight, rightWingWidth);
 
     }
 
@@ -262,7 +241,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
     }
 
 
-    private void setDimensions(@NonNull LinearLayout linearLayout, int wingHeight, int wingWidth){
+    private void setDimensions(@NonNull RelativeLayout linearLayout, int wingHeight, int wingWidth){
         LayoutParams params = (LayoutParams) linearLayout.getLayoutParams();
 // Changes the height and width to the specified *pixels*
         if (wingHeight != 0) {

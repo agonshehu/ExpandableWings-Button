@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ExpandableWingsTest">
+    <declare-styleable name="ExpandableWingss">
         <attr name="ew_right_backgroundcolor" format="color" />
         <attr name="ew_left_backgroundcolor" format="color" />
         <attr name="ew_right_width" format="dimension" />

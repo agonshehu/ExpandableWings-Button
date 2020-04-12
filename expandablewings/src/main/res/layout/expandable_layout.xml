@@ -10,12 +10,9 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addbtn"
-        android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:clickable="true"
@@ -43,44 +40,34 @@
 
             <RelativeLayout
                 android:id="@+id/expandable_left"
+                android:layout_width="150dp"
                 android:visibility="invisible"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_filter_state_left"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/leftclick"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/leftwingtext"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/ic_filter_state_left"
-                    android:minHeight="50dp"
-                    android:orientation="horizontal">
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Left"
+                    android:textColor="@color/purple"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/leftwingtext"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="40dp"
-                        android:text="Left"
-                        android:textColor="@color/purple"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="150dp"
-                        android:layout_height="300dp"
-                        android:visibility="gone" />
-                </LinearLayout>
-
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="150dp"
+                    android:layout_height="300dp"
+                    android:visibility="gone" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -92,39 +79,31 @@
 
             <RelativeLayout
                 android:id="@+id/expandable_right"
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ic_filter_state_right"
+                android:minHeight="50dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/rightclick"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/rightwingtext"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/ic_filter_state_right"
-                    android:minHeight="50dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/rightwingtext"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:paddingStart="40dp"
-                        android:paddingEnd="10dp"
-                        android:text="Right"
-                        android:textColor="@color/purple"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Right"
+                    android:textColor="@color/purple"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </RelativeLayout>
+
 
         </RelativeLayout>
     </LinearLayout>

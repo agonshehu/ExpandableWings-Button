@@ -2,7 +2,6 @@ package com.expandablewings;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -10,18 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ExpandableWings expandableWings;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ExpandableWings expandableWings = findViewById(R.id.expandableWings);
-        expandableWings.setOnFabClickListener(new ExpandableWings.OnFabClick() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
-            }
-        });
+        expandableWings = findViewById(R.id.expandableWings);
+
         expandableWings.setOnWingClickListener(new ExpandableWings.OnWingClick() {
             @Override
             public void onClick(ExpandableWings.Wings wings) {
@@ -33,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
                     case LEFT:
                         Toast.makeText(MainActivity.this, "Left", Toast.LENGTH_SHORT).show();
                         // expandableWings.collapseView();
+                        break;
+                    case CENTER:
+                        expandableWings.toggleFab();
+                        Toast.makeText(MainActivity.this, "Center", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

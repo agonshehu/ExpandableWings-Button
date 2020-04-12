@@ -35,7 +35,7 @@ class ViewAnimationUtil {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        v.setVisibility(View.GONE);
+                        v.setVisibility(View.INVISIBLE);
                     }
                 };
 
