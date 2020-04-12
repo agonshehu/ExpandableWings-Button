@@ -29,6 +29,7 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
     private boolean iconRotate = false;
     private int rotationDegree = 0;
     private RelativeLayout rightWing, leftWing;
+    private boolean disableExpansion = false;
 
     public enum Wings {
         LEFT, RIGHT
@@ -141,7 +142,9 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         } else if (id == R.id.leftclick) {
             if (mListener != null) mListener.onClick(Wings.LEFT);
         } else if (id == R.id.addbtn) {
-            toggleFab();
+            if (!disableExpansion) {
+                toggleFab();
+            }
         }
     }
 
@@ -170,6 +173,9 @@ public class ExpandableWings extends RelativeLayout implements View.OnClickListe
         }
     }
 
+    public void disableExpansion(boolean check){
+        this.disableExpansion = check;
+    }
     public boolean isExpanded(){
         return rightWing.getVisibility() == VISIBLE && leftWing.getVisibility() == VISIBLE;
     }

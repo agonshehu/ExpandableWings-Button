@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ExpandableWings expandableWings = findViewById(R.id.expandableWings);
         expandableWings.setOnWingClickListener(new ExpandableWings.OnWingClick() {
             @Override
